@@ -179,17 +179,61 @@ full.data$id <- seq_len(nrow(full.data))
 ## to be the row position variable
 setkey(full.data, id)
 
-## begin renaming columns
+## select data changing column names along the way
+## and store the result in 'tidy'
 tidy <- full.data %>%
-  rename(body.accelerometer.mean.x = tBodyAcc.mean.X) %>%
-  rename(body.accelerometer.mean.y = tBodyAcc.mean.Y) %>%
-  rename(body.accelerometer.mean.z = tBodyAcc.mean.Z) %>%
-  rename(body.accelerometer.standard.deviation.x = tBodyAcc.std.X) %>%
-  rename(body.accelerometer.standard.deviation.y = tBodyAcc.std.Y) %>%
-  rename(body.accelerometer.standard.deviation.z = tBodyAcc.std.Z) %>%
-  rename(gravity.accelerometer.mean.x = tGravityAcc.mean.X) %>%
-  rename(gravity.accelerometer.mean.y = tGravityAcc.mean.Y) %>%
-  rename(gravity.accelerometer.mean.z = tGravityAcc.mean.Z)
-
-
+  select(id,
+         subject = subject_id,
+         activity = activity_name,
+         time.body.accelerometer.mean.x = tBodyAcc.mean.X,
+         time.body.accelerometer.mean.y = tBodyAcc.mean.Y,
+         time.body.accelerometer.mean.z = tBodyAcc.mean.Z,
+         time.body.accelerometer.standard.deviation.x = tBodyAcc.std.X,
+         time.body.accelerometer.standard.deviation.y = tBodyAcc.std.Y,
+         time.body.accelerometer.standard.deviation.z = tBodyAcc.std.Z,
+         time.gravity.accelerometer.mean.x = tGravityAcc.mean.X,
+         time.gravity.accelerometer.mean.y = tGravityAcc.mean.Y,
+         time.gravity.accelerometer.mean.z = tGravityAcc.mean.Z,
+         time.gravity.accelerometer.standard.deviation.x = tGravityAcc.std.X,
+         time.gravity.accelerometer.standard.deviation.y = tGravityAcc.std.Y,
+         time.gravity.accelerometer.standard.deviation.z = tGravityAcc.std.Z,
+         time.body.accelerometer.jerk.mean.x = tBodyAccJerk.mean.X,
+         time.body.accelerometer.jerk.mean.y = tBodyAccJerk.mean.Y,
+         time.body.accelerometer.jerk.mean.z = tBodyAccJerk.mean.Z,
+         time.body.accelerometer.jerk.standard.deviation.x = tBodyAccJerk.std.X,
+         time.body.accelerometer.jerk.standard.deviation.y = tBodyAccJerk.std.Y,
+         time.body.accelerometer.jerk.standard.deviation.z = tBodyAccJerk.std.Z,
+         time.body.gyro.mean.x = tBodyGyro.mean.X,
+         time.body.gyro.mean.y = tBodyGyro.mean.Y,
+         time.body.gyro.mean.z = tBodyGyro.mean.Z,
+         time.body.gyro.standard.deviation.x = tBodyGyro.std.X,
+         time.body.gyro.standard.deviation.y = tBodyGyro.std.Y,
+         time.body.gyro.standard.deviation.z = tBodyGyro.std.Z,
+         time.body.gyro.jerk.mean.x = tBodyGyroJerk.mean.X,
+         time.body.gyro.jerk.mean.y = tBodyGyroJerk.mean.Y,
+         time.body.gyro.jerk.mean.z = tBodyGyroJerk.mean.Z,
+         time.body.gyro.jerk.standard.deviation.x = tBodyGyroJerk.std.X,
+         time.body.gyro.jerk.standard.deviation.y = tBodyGyroJerk.std.Y,
+         time.body.gyro.jerk.standard.deviation.z = tBodyGyroJerk.std.Z,
+         frequency.body.accelerometer.mean.x = fBodyAcc.mean.X,
+         frequency.body.accelerometer.mean.y = fBodyAcc.mean.Y,
+         frequency.body.accelerometer.mean.z = fBodyAcc.mean.Z,
+         frequency.body.accelerometer.standard.deviation.x = fBodyAcc.std.X,
+         frequency.body.accelerometer.standard.deviation.y = fBodyAcc.std.Y,
+         frequency.body.accelerometer.standard.deviation.z = fBodyAcc.std.Z,
+         frequency.body.accelerometer.jerk.mean.x = fBodyAccJerk.mean.X,
+         frequency.body.accelerometer.jerk.mean.y = fBodyAccJerk.mean.Y,
+         frequency.body.accelerometer.jerk.mean.z = fBodyAccJerk.mean.Z,
+         frequency.body.accelerometer.jerk.standard.deviation.x = fBodyAccJerk.std.X,
+         frequency.body.accelerometer.jerk.standard.deviation.y = fBodyAccJerk.std.Y,
+         frequency.body.accelerometer.jerk.standard.deviation.z = fBodyAccJerk.std.Z,
+         frequency.body.gyro.mean.x = fBodyGyro.mean.X,
+         frequency.body.gyro.mean.y = fBodyGyro.mean.Y,
+         frequency.body.gyro.mean.z = fBodyGyro.mean.Z,
+         frequency.body.gyro.standard.deviation.x = fBodyGyro.std.X,
+         frequency.body.gyro.standard.deviation.y = fBodyGyro.std.Y,
+         frequency.body.gyro.standard.deviation.z = fBodyGyro.std.Z
+         ) %>%
+  arrange(activity, subject) %>%
+  group_by(activity, subject)
 
