@@ -3,37 +3,43 @@ library(data.table)
 library(LaF)
 library(tidyr)
 
+## store the original directory
 original_directory <- getwd()
 
+## set meta_dir to the parent folder of the unzipped data set
 meta_dir <- "/home/jaydm/courseWork/gettingAndCleaningData/UCI HAR Dataset/"
+
+## the test and train directory variable should not require any modification
 test_dir <- paste0(meta_dir, "test/")
 train_dir <- paste0(meta_dir, "train/")
 
-test_dir
-train_dir
+## set output_dir to the location where you want the tidy data to be created
+output_dir <- "."
 
+setwd(output_dir)
+
+## it is necessary to load in the feature names in order to use them for column headings
 feature.file <- paste0(meta_dir, "features.txt")
 features <- read.table(feature.file, sep = " ", col.names = c("feature_id", "feature_name"), colClasses=c("numeric","character"))
 
+## remove the variable once it is no longer needed
 rm("feature.file")
 
+## but, there are a number of invalid characters in the feature names
+## create a 'pretty' version of the feature names that will be valid as
+## column headings
 pretty_features <- mutate(features, feature_name = gsub(",","-",gsub("\\)","",gsub("\\(","",features$feature_name))))
 
-features <- data.table(features)
-
-str(features)
-head(features)
-
+## load in the activity lables for cross referencing in the ouput data
 activity.file <- paste0(meta_dir, "activity_labels.txt")
 activities <- read.table(activity.file, sep = " ", col.names = c("activity_id", "activity_name"))
 
+## remove the variable once it is no longer needed
 rm("activity.file")
 
 activities <- data.table(activities)
 
-str(activities)
-head(activities)
-
+## begin the actual processing of the data
 train.subject.file <- paste0(train_dir, "subject_train.txt")
 train.subject <- read.table(train.subject.file, col.names = c("subject_id"))
 
