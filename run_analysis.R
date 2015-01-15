@@ -184,7 +184,12 @@ tidy <- full.data %>%
   rename(body.accelerometer.mean.x = tBodyAcc.mean.X) %>%
   rename(body.accelerometer.mean.y = tBodyAcc.mean.Y) %>%
   rename(body.accelerometer.mean.z = tBodyAcc.mean.Z) %>%
-  print
+  rename(body.accelerometer.standard.deviation.x = tBodyAcc.std.X) %>%
+  rename(body.accelerometer.standard.deviation.y = tBodyAcc.std.Y) %>%
+  rename(body.accelerometer.standard.deviation.z = tBodyAcc.std.Z) %>%
+  rename(gravity.accelerometer.mean.x = tGravityAcc.mean.X) %>%
+  rename(gravity.accelerometer.mean.y = tGravityAcc.mean.Y) %>%
+  rename(gravity.accelerometer.mean.z = tGravityAcc.mean.Z)
 
 
 
