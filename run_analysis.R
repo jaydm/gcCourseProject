@@ -3,6 +3,7 @@ library(plyr)
 library(dplyr)
 library(data.table)
 library(LaF)
+library(tidyr)
 
 original_directory <- getwd()
 
@@ -16,7 +17,8 @@ train_dir
 feature.file <- paste0(meta_dir, "features.txt")
 features <- read.table(feature.file, sep = " ", col.names = c("feature_id", "feature_name"), colClasses=c("numeric","character"))
 
-features <- mutate(features, feature_name = gsub(",","-",gsub("\\)","",gsub("\\(","",features$feature_name))))
+pretty_features <- mutate(features, feature_name = gsub(",","-",gsub("\\)","",gsub("\\(","",features$feature_name))))
+
 features <- data.table(features)
 
 str(features)
@@ -53,32 +55,27 @@ str(train.activity)
 head(train.activity)
 
 train.data.file <- paste0(train_dir, "X_train.txt")
-laf <- laf_open_fwf(train.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=features$feature_name)
+laf <- laf_open_fwf(train.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
 
 train.data <- data.table(laf[,])
-train.data$row_number <- seq_len(nrow(train.data))
 
-setkey(train.data, row_number)
+train.selected <- train.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name)]$feature_id)
+train.selected$row_number <- seq_len(nrow(train.selected))
 
-str(train.data)
-head(train.data)
+setkey(train.selected, row_number)
 
-training <- merge(merge(train.data, train.subject), train.activity)
+str(train.selected)
+head(train.selected)
 
-rm("train.subject.file")
-rm("train.subject")
-rm("train.activity.file")
-rm("train.activity")
-rm("train.data.file")
-rm("train.data")
+training <- merge(merge(train.selected, train.subject), train.activity)
 
-colnames(training)
-
-setkey(training, activity_id)
-
-training.full <- merge(training, activities)
-
-rm("training")
+## rm("train.subject.file")
+## rm("train.subject")
+## rm("train.activity.file")
+## rm("train.activity")
+## rm("train.data.file")
+## rm("train.data")
+## rm("train.selected")
 
 test.subject.file <- paste0(test_dir, "subject_test.txt")
 test.subject <- read.table(test.subject.file, col.names = c("subject_id"))
@@ -103,35 +100,32 @@ str(test.activity)
 head(test.activity)
 
 test.data.file <- paste0(test_dir, "X_test.txt")
-laf <- laf_open_fwf(test.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=features$feature_name)
+laf <- laf_open_fwf(test.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
 
 test.data <- data.table(laf[,])
-test.data$row_number <- seq_len(nrow(test.data))
 
-setkey(test.data, row_number)
+test.selected <- test.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name)]$feature_id)
+test.selected$row_number <- seq_len(nrow(test.selected))
 
-str(test.data)
-head(test.data)
+setkey(test.selected, row_number)
 
-testing <- merge(test.data, test.subject, all=TRUE)
-testing <- merge(testing, test.activity, all=TRUE)
+str(test.selected)
+head(test.selected)
 
-rm("test.subject.file")
-rm("test.subject")
-rm("test.activity.file")
-rm("test.activity")
-rm("test.data.file")
-rm("test.data")
+testing <- merge(merge(test.selected, test.subject), test.activity)
 
-colnames(testing)
+## rm("test.subject.file")
+## rm("test.subject")
+## rm("test.activity.file")
+## rm("test.activity")
+## rm("test.data.file")
+## rm("test.data")
+## rm("test.selected")
 
-setkey(testing, activity_id)
+full.data <- data.table(rbindlist(training, testing))
 
-testing.full <- merge(testing, activities)
+setkey(full.data, activity_id)
 
-rm("testing")
+full.data <- merge(full.data, activities)
 
-full.data <- rbind(training.full, testing.full)
-
-rm("training.full")
-rm("testing.full")
+tables()
