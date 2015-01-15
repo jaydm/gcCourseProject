@@ -40,43 +40,58 @@ rm("activity.file")
 activities <- data.table(activities)
 
 ## begin the actual processing of the data
+
+## begin processing of the training data
+
+## load the test subjects
 train.subject.file <- paste0(train_dir, "subject_train.txt")
 train.subject <- read.table(train.subject.file, col.names = c("subject_id"))
 
 train.subject <- data.table(train.subject)
+
+## add an id that correspond to the row so that the relationship
+## will not be lost during merges
 train.subject$id <- seq_len(nrow(train.subject))
 
+## create a key on the training subject table for the row id
 setkey(train.subject, id)
 
-str(train.subject)
-head(train.subject)
-
+## load the activities that correspond to the test data
 train.activity.file <- paste0(train_dir, "y_train.txt")
 train.activity <- read.table(train.activity.file, col.names = c("activity_id"))
 
 train.activity <- data.table(train.activity)
+
+## add an id that correspond to the row so that the relationship
+## will not be lost during merges
 train.activity$id <- seq_len(nrow(train.activity))
 
+## create a key on the training activity table for the row id
 setkey(train.activity, id)
 
-str(train.activity)
-head(train.activity)
-
+## load the actual training data using the LaF package
+## for faster loading of large tables of fixed
+## width data
 train.data.file <- paste0(train_dir, "X_train.txt")
 laf <- laf_open_fwf(train.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
 
 train.data <- data.table(laf[,])
 
-train.selected <- train.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name)]$feature_id)
+## select only the columns that are standard deviations and means
+train.selected <- train.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name),]$feature_id)
+
+## create a key on the training data for the row id
 train.selected$id <- seq_len(nrow(train.selected))
 
+## create a key on the training data table for the row id
 setkey(train.selected, id)
 
-str(train.selected)
-head(train.selected)
-
+## combine the reduced column training data with the
+## training subjects and activities
+## (using the created id column in each)
 training <- join_all(list(train.selected, train.subject, train.activity))
 
+## remove variables and tables no longer needed
 rm("train.subject.file")
 rm("train.subject")
 rm("train.activity.file")
@@ -85,43 +100,54 @@ rm("train.data.file")
 rm("train.data")
 rm("train.selected")
 
+## Begin processing of the test data
+
+## load the testing subjects
 test.subject.file <- paste0(test_dir, "subject_test.txt")
 test.subject <- read.table(test.subject.file, col.names = c("subject_id"))
 
 test.subject <- data.table(test.subject)
+
+## add a row id column to protect against row re-ordering
 test.subject$id <- seq_len(nrow(test.subject))
 
+## add a key based on the row id for later joining
 setkey(test.subject, id)
 
-str(test.subject)
-head(test.subject)
-
+## load the test activities
 test.activity.file <- paste0(test_dir, "y_test.txt")
 test.activity <- read.table(test.activity.file, col.names = c("activity_id"))
 
 test.activity <- data.table(test.activity)
+
+## add a row id column to protect against row re-ordering
 test.activity$id <- seq_len(nrow(test.activity))
 
+## add a key base on the row id for later joining
 setkey(test.activity, id)
 
-str(test.activity)
-head(test.activity)
-
+## load the actual test data using the LaF package
+## for faster loading of large tables of fixed
+## width data
 test.data.file <- paste0(test_dir, "X_test.txt")
 laf <- laf_open_fwf(test.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
 
 test.data <- data.table(laf[,])
 
-test.selected <- test.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name)]$feature_id)
+## select only the columns that are standard deviations and means
+test.selected <- test.data %>% select(features[grepl("mean\\(", features$feature_name) | grepl("std\\(", features$feature_name),]$feature_id)
+
+## add a row id column to protect against re-ordering
 test.selected$id <- seq_len(nrow(test.selected))
 
+## set a key to the row id for joining
 setkey(test.selected, id)
 
-str(test.selected)
-head(test.selected)
-
+## join together the selected test data columns
+## to the test subject and test activity tables
 testing <- join_all(list(test.selected, test.subject, test.activity))
 
+## remove unneeded variables/tables
 rm("test.subject.file")
 rm("test.subject")
 rm("test.activity.file")
@@ -130,17 +156,35 @@ rm("test.data.file")
 rm("test.data")
 rm("test.selected")
 
+## combine the training and testing data tables
+## into a single table
 full.data <- data.table(rbind(training, testing))
 
+## remove the partials
 rm("training")
 rm("testing")
 
+## set a key on the activity id for merging with the
+## activity descriptions
 setkey(full.data, activity_id)
 
+## merge in the activity descriptions
 full.data <- merge(full.data, activities)
+
+## replace the current row ids with the new
+## current row positions (not actually necessary)
 full.data$id <- seq_len(nrow(full.data))
 
+## set the key on the full data set
+## to be the row position variable
 setkey(full.data, id)
 
-tables()
+## begin renaming columns
+tidy <- full.data %>%
+  rename(body.accelerometer.mean.x = tBodyAcc.mean.X) %>%
+  rename(body.accelerometer.mean.y = tBodyAcc.mean.Y) %>%
+  rename(body.accelerometer.mean.z = tBodyAcc.mean.Z) %>%
+  print
+
+
 
