@@ -248,7 +248,7 @@ write.table(tidy, file="tidy.output", row.names=FALSE)
 write.table(tidy.averages, file="tidy.averages.output", row.names=FALSE)
 
 ## write out csv versions
-write.csv(tidy, file="tidy.csv", row.names=FALSE)
-write.csv(tidy.averages, file="tidy.averages.csv", row.names=FALSE)
+## write.csv(tidy, file="tidy.csv", row.names=FALSE)
+## write.csv(tidy.averages, file="tidy.averages.csv", row.names=FALSE)
 
 setwd(original_directory)
