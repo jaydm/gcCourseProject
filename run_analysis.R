@@ -122,7 +122,7 @@ testing <- merge(merge(test.selected, test.subject), test.activity)
 ## rm("test.data")
 ## rm("test.selected")
 
-full.data <- data.table(rbindlist(training, testing))
+full.data <- data.table(rbind(training, testing))
 
 setkey(full.data, activity_id)
 
