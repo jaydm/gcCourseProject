@@ -1,3 +1,4 @@
+library(plyr)
 library(dplyr)
 library(data.table)
 library(LaF)
@@ -14,7 +15,10 @@ test_dir <- paste0(meta_dir, "test/")
 train_dir <- paste0(meta_dir, "train/")
 
 ## set output_dir to the location where you want the tidy data to be created
-output_dir <- "."
+## if you want them in the working directory
+## output_dir <- "."
+## if you want them in the base of the data set directory
+output_dir <- meta_dir
 
 setwd(output_dir)
 
@@ -182,9 +186,8 @@ setkey(full.data, id)
 ## select data changing column names along the way
 ## and store the result in 'tidy'
 tidy <- full.data %>%
-  select(id,
+  select(activity = activity_name,
          subject = subject_id,
-         activity = activity_name,
          time.body.accelerometer.mean.x = tBodyAcc.mean.X,
          time.body.accelerometer.mean.y = tBodyAcc.mean.Y,
          time.body.accelerometer.mean.z = tBodyAcc.mean.Z,
@@ -237,3 +240,15 @@ tidy <- full.data %>%
   arrange(activity, subject) %>%
   group_by(activity, subject)
 
+tidy.averages <- tidy %>%
+  summarise_each(funs(mean))
+
+## write out the two versions of the tidy data
+write.table(tidy, file="tidy.output", row.names=FALSE)
+write.table(tidy.averages, file="tidy.averages.output", row.names=FALSE)
+
+## write out csv versions
+write.csv(tidy, file="tidy.csv", row.names=FALSE)
+write.csv(tidy.averages, file="tidy.averages.csv", row.names=FALSE)
+
+setwd(original_directory)
