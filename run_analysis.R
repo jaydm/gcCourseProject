@@ -65,11 +65,20 @@ head(train.data)
 
 training <- merge(merge(train.data, train.subject), train.activity)
 
+rm("train.subject.file")
+rm("train.subject")
+rm("train.activity.file")
+rm("train.activity")
+rm("train.data.file")
+rm("train.data")
+
 colnames(training)
 
 setkey(training, activity_id)
 
 training.full <- merge(training, activities)
+
+rm("training")
 
 test.subject.file <- paste0(test_dir, "subject_test.txt")
 test.subject <- read.table(test.subject.file, col.names = c("subject_id"))
@@ -107,10 +116,19 @@ head(test.data)
 testing <- merge(test.data, test.subject, all=TRUE)
 testing <- merge(testing, test.activity, all=TRUE)
 
+rm("test.subject.file")
+rm("test.subject")
+rm("test.activity.file")
+rm("test.activity")
+rm("test.data.file")
+rm("test.data")
+
 colnames(testing)
 
 setkey(testing, activity_id)
 
 testing.full <- merge(testing, activities)
+
+rm("testing")
 
 full.data <- rbind(training.full, testing.full)
