@@ -132,3 +132,6 @@ testing.full <- merge(testing, activities)
 rm("testing")
 
 full.data <- rbind(training.full, testing.full)
+
+rm("training.full")
+rm("testing.full")
