@@ -2,7 +2,6 @@ library(plyr)
 library(dplyr)
 library(data.table)
 library(LaF)
-library(tidyr)
 
 process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UCI HAR Dataset", output_dir = ".") {
   ## store the original directory
