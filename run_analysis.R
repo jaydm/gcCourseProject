@@ -11,13 +11,11 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   setwd(data_dir)
   
   ## the test and train directory variable should not require any modification
-  test_dir <- paste0(data_dir, "test/")
-  train_dir <- paste0(data_dir, "train/")
-
-  setwd(output_dir)
+  test_dir <- "test/"
+  train_dir <- "train/"
   
   ## it is necessary to load in the feature names in order to use them for column headings
-  feature.file <- paste0(data_dir, "features.txt")
+  feature.file <- "features.txt"
   features <- read.table(feature.file, sep = " ", col.names = c("feature_id", "feature_name"), colClasses=c("numeric","character"))
   
   ## remove the variable once it is no longer needed
@@ -29,7 +27,7 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   pretty_features <- mutate(features, feature_name = gsub(",","-",gsub("\\)","",gsub("\\(","",features$feature_name))))
   
   ## load in the activity lables for cross referencing in the ouput data
-  activity.file <- paste0(data_dir, "activity_labels.txt")
+  activity.file <- "activity_labels.txt"
   activities <- read.table(activity.file, sep = " ", col.names = c("activity_id", "activity_name"))
   
   ## remove the variable once it is no longer needed
@@ -40,9 +38,10 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   ## begin the actual processing of the data
   
   ## begin processing of the training data
+  setwd(train_dir)
   
   ## load the test subjects
-  train.subject.file <- paste0(train_dir, "subject_train.txt")
+  train.subject.file <- "subject_train.txt"
   train.subject <- read.table(train.subject.file, col.names = c("subject_id"))
   
   train.subject <- data.table(train.subject)
@@ -55,7 +54,7 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   setkey(train.subject, id)
   
   ## load the activities that correspond to the test data
-  train.activity.file <- paste0(train_dir, "y_train.txt")
+  train.activity.file <- "y_train.txt"
   train.activity <- read.table(train.activity.file, col.names = c("activity_id"))
   
   train.activity <- data.table(train.activity)
@@ -70,7 +69,7 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   ## load the actual training data using the LaF package
   ## for faster loading of large tables of fixed
   ## width data
-  train.data.file <- paste0(train_dir, "X_train.txt")
+  train.data.file <- "X_train.txt"
   laf <- laf_open_fwf(train.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
   
   train.data <- data.table(laf[,])
@@ -98,10 +97,14 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   rm("train.data")
   rm("train.selected")
   
+  setwd("..")
+  
   ## Begin processing of the test data
   
+  setwd(test_dir)
+  
   ## load the testing subjects
-  test.subject.file <- paste0(test_dir, "subject_test.txt")
+  test.subject.file <- "subject_test.txt"
   test.subject <- read.table(test.subject.file, col.names = c("subject_id"))
   
   test.subject <- data.table(test.subject)
@@ -113,7 +116,7 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   setkey(test.subject, id)
   
   ## load the test activities
-  test.activity.file <- paste0(test_dir, "y_test.txt")
+  test.activity.file <- "y_test.txt"
   test.activity <- read.table(test.activity.file, col.names = c("activity_id"))
   
   test.activity <- data.table(test.activity)
@@ -127,7 +130,7 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   ## load the actual test data using the LaF package
   ## for faster loading of large tables of fixed
   ## width data
-  test.data.file <- paste0(test_dir, "X_test.txt")
+  test.data.file <- "X_test.txt"
   laf <- laf_open_fwf(test.data.file, column_widths = rep(16,561),column_types=rep("numeric",561),column_names=pretty_features$feature_name)
   
   test.data <- data.table(laf[,])
@@ -236,6 +239,8 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   
   tidy.averages <- tidy %>%
     summarise_each(funs(mean))
+  
+  setwd(output_dir)
   
   ## write out the two versions of the tidy data
   write.table(tidy, file="tidy.output", row.names=FALSE)
