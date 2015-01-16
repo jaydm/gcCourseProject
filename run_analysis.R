@@ -165,6 +165,8 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   rm("training")
   rm("testing")
   
+  setwd("..")
+  
   ## set a key on the activity id for merging with the
   ## activity descriptions
   setkey(full.data, activity_id)
