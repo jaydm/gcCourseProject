@@ -173,14 +173,6 @@ process <- function(data_dir = "/home/jaydm/courseWork/gettingAndCleaningData/UC
   ## merge in the activity descriptions
   full.data <- merge(full.data, activities)
   
-  ## replace the current row ids with the new
-  ## current row positions (not actually necessary)
-  full.data$id <- seq_len(nrow(full.data))
-  
-  ## set the key on the full data set
-  ## to be the row position variable
-  setkey(full.data, id)
-  
   ## select data changing column names along the way
   ## and store the result in 'tidy'
   tidy <- full.data %>%
