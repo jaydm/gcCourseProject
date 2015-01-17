@@ -47,7 +47,12 @@ If you have copied the run_analysis.R file into the data directory and want the 
 1. The program then changes into the test data subdirectory and follows the same set of processes on the corresponding test data eventually resulting in a data table called testing.
 1. The two data tables (training and testing) are then combined using the rbind function and the resulting data table stored as full.data.
 1. The combined measurement data then has its key set as the activity ID in preparation for merging against the activities data table.
-1. 
+1. The full.data table is merged against the activities table in order to pull in the activity descriptions.
+1. The full.data table is then reformatted by using the select function to limit and reorder the columns to the activity, subject, and each of the mean and standard deviation columns. During the selection each of the columns are renamed to more descriptive and human readable values and the result is stored in a table called tidy. In the same step, the data table is arranged and grouped by activity and subject using the functions arrange() and group_by().
+1. The tidy table is then averaged by using the summarize_each function and passing in mean as the method of summarizing and the result is stored in the table tidy.averages.
+1. The program then changes into the output directory (specified by the output_dir variable in the process() call - defaults to the data directory).
+1. The tidy table (full detail of measurements for both the training data and actual test) are exported to a file called 'tidy.output.txt' using write.table(tidy,  file="tidy.output.txt"", row.names=FALSE).
+1. The tidy.average table (averaged version of the tidy table summarized by activity and subject) are then exported to a file called 'tidy.averages.output.txt' using write.table(tidy.averages, file="tidy.averages.output.txt", row.names=FALSE).
 1. The program will then change back to the originally stored directory location.
 
 ## Final output
