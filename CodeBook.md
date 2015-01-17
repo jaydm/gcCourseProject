@@ -1,7 +1,7 @@
 ---
 title: Code Book
 author: Jay D. McHugh
-date: 01/09/2015
+date: 01/16/2015
 output: html_document
 ---
 # Original Data
@@ -73,16 +73,37 @@ After the processing, the data has been consolidated with the descriptive activi
 
 Once they have been extracted, they are then summarized by activity and subject with each of the measurements averaged over those ranges.
 
-As these are averages of the averages and standard deviations which are unitless - all of these values are also unitless.
+As these are averages of the averages and standard deviations which are unitless - *all of these values are also unitless*.
+
+Although tidy data frequently strives to remove any extraneous characters from the column names, dots have been put in to make the names more easily readable. Also, the labels have been fully expanded to make it more readable to viewers without a specific background in physics/engineering.
 
 The following are the values extracted from the original data set as well as the original measurement names:
 
 - activity
+
+    This is the descriptive name of the activity. It is pulled from the activity\_labels.text file by using the y\_xxxxx.txt file as a reference to determine which activity corresponds to the measurement data.
+    
+    There are six different activities: WALKING, WALKING\_UPSTAIRS, WALKING\_DOWNSTAIRS, SITTING, STANDING, and LAYING
+  
 - subject
+
+    This is the subject number pulled from the subject\_xxxxx.txt file that corresponds to the row in the measurement data.
+    
+    The study is comprised of thirty anonymous subjects so there is only the subject number (from 1 through 30)
+    
 - time.body.acceleration.mean.x
+
+    This is the average of the original measurement tBodyAcc.mean().X from the source data for each activity/subject combination.
+    
 - time.body.acceleration.mean.y
-- time.body.acceleration.mean.z 
-- time.body.acceleration.standard.deviation.x 
+
+    This is the average of the original measurement tBodyAcc.mean().X from the source data for each activity/subject combination.
+    
+- time.body.acceleration.mean.z
+
+    This is the average of the original measurement tBodyAcc.mean().Z from the source data for each activity/subject combination.
+    
+- time.body.acceleration.standard.deviation.x
 - time.body.acceleration.standard.deviation.y 
 - time.body.acceleration.standard.deviation.z 
 - time.gravity.acceleration.mean.x 
