@@ -57,7 +57,13 @@ If you have copied the run_analysis.R file into the data directory and want the 
 
 ## Final output
 
-The script will create two tables. One with the detailed combination of the training and testing data (a total of 10299 rows). And a second with the averaged values across each activity and subject (a total of 180 rows).
+The script will create two tables. One with the detailed combination of the training and testing data (a total of 10299 rows). And a second with the averaged values across each activity and subject (a total of 180 rows - thirty groups of six).
 
 - tidy.output (detailed processed data)
 - tidy.averages.output (summarized across each activity/subject)
+
+In order to reload the data into R, use the read.table command with the header flag set to true.
+
+Example:
+
+tidy <- read.table("tidy.averages.output.txt", header=TRUE)
