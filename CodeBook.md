@@ -93,19 +93,28 @@ The following are the values extracted from the original data set as well as the
     
 - time.body.acceleration.mean.x
 
-    This is the average of the original measurement tBodyAcc.mean().X from the source data for each activity/subject combination.
+    This is the average of the original measurement tBodyAcc.mean().X from the source data for each activity/subject combination. The original value is the average acceleration on the x axis.
     
 - time.body.acceleration.mean.y
 
-    This is the average of the original measurement tBodyAcc.mean().X from the source data for each activity/subject combination.
+    This is the average of the original measurement tBodyAcc.mean().Y from the source data for each activity/subject combination. The original value is the average acceleration on the y axis.
     
 - time.body.acceleration.mean.z
 
-    This is the average of the original measurement tBodyAcc.mean().Z from the source data for each activity/subject combination.
+    This is the average of the original measurement tBodyAcc.mean().Z from the source data for each activity/subject combination. The original value is the average acceleration on the Z axis.
     
 - time.body.acceleration.standard.deviation.x
-- time.body.acceleration.standard.deviation.y 
-- time.body.acceleration.standard.deviation.z 
+
+    This is the average of the original measurement tBodyAcc.std().x from the source data for each activity/subject combination. The original value is the standard deviation of the acceleration along the x axis.
+    
+- time.body.acceleration.standard.deviation.y
+
+    This is the average of the original measurement tBodyAcc.std().y from the source data for each activity/subject combination. The original value is the standard deviation of the acceleration along the y axis.
+    
+- time.body.acceleration.standard.deviation.z
+
+    This is the average of the original measurement tBodyAcc.std().z from the source data for each activity/subject combination. The original value is the standard deviation of the acceleration along the z axis.
+    
 - time.gravity.acceleration.mean.x 
 - time.gravity.acceleration.mean.y 
 - time.gravity.acceleration.mean.z 
