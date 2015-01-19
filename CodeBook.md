@@ -6,7 +6,7 @@ output: html_document
 ---
 # Original Data
 
-The original data was produced by Samsung and is described as follows.
+The original data was produced by Samsung and is described as follows. See below for the converted data descriptions.
 
 ## Feature Selection 
 
