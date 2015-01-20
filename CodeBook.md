@@ -115,7 +115,10 @@ The following are the values extracted from the original data set as well as the
 
     This is the average of the original measurement tBodyAcc.std().z from the source data for each activity/subject combination. The original value is the standard deviation of the acceleration along the z axis.
     
-- time.gravity.acceleration.mean.x 
+- time.gravity.acceleration.mean.x
+
+    This is the average of the original measurement tGravAcc.mean().x from the source data for each activity/subject combination.
+
 - time.gravity.acceleration.mean.y 
 - time.gravity.acceleration.mean.z 
 - time.gravity.acceleration.standard.deviation.x 
