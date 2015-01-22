@@ -132,11 +132,30 @@ The following are the values extracted from the original data set as well as the
     This is the average of the original measurement tGravAcc.std().X from the source data for each activity/subject combination.
 
 - time.gravity.acceleration.standard.deviation.y 
+
+    This is the average of the original measurement tGravAcc.std().Y from the source data for each activity/subject combination.
+
 - time.gravity.acceleration.standard.deviation.z 
+
+
+    This is the average of the original measurement tGravAcc.std().Z from the source data for each activity/subject combination.
+
 - time.body.acceleration.jerk.mean.x 
+
+    This is the average of the original measurement tBodyAccJerk.mean().X from the source data for each activity/subject combination.
+
 - time.body.acceleration.jerk.mean.y 
+
+    This is the average of the original measurement tBodyAccJerk.mean().Y from the source data for each activity/subject combination.
+
 - time.body.acceleration.jerk.mean.z 
+
+    This is the average of the original measurement tBodyAccJerk.mean().Z from the source data for each activity/subject combination.
+
 - time.body.acceleration.jerk.standard.deviation.x 
+
+    This is the average of the original measurement tBodyAccJerk.std().X from the source data for each activity/subject comibination.
+
 - time.body.acceleration.jerk.standard.deviation.y 
 - time.body.acceleration.jerk.standard.deviation.z 
 - time.body.gyro.mean.x 
