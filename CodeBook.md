@@ -154,18 +154,48 @@ The following are the values extracted from the original data set as well as the
 
 - time.body.acceleration.jerk.standard.deviation.x 
 
-    This is the average of the original measurement tBodyAccJerk.std().X from the source data for each activity/subject comibination.
+    This is the average of the original measurement tBodyAccJerk.std().X from the source data for each activity/subject combination.
 
-- time.body.acceleration.jerk.standard.deviation.y 
+- time.body.acceleration.jerk.standard.deviation.y
+
+    This is the average of the original measurement tBodyAccJerk.std().Y from the source data for each activity/subject combination.
+    
 - time.body.acceleration.jerk.standard.deviation.z 
-- time.body.gyro.mean.x 
+
+    This is the average of the original measurement tBodyAccJerk.std().Z from the source data for each activity/subject combination.
+    
+- time.body.gyro.mean.x
+
+    This is the average of the original measurement tBodyGyro.mean().X from the source data for each activity/subject combination.
+    
 - time.body.gyro.mean.y 
+
+    This is the average of the original measurement tBodyGyro.mean().Y from the source data for each activity/subject combination.
+    
 - time.body.gyro.mean.z 
+
+    This is the average of the original measurement tBodyGyro.mean().Z from the source data for each activity/subject combination.
+    
 - time.body.gyro.standard.deviation.x 
+
+    This is the average of the original measurement tBodyGyro.std().X from the source data for each activity/subject combination.
+    
 - time.body.gyro.standard.deviation.y 
+
+    This is the average of the original measurement tBodyGyro.std().Y from the source data for each activity/subject combination.
+    
 - time.body.gyro.standard.deviation.z 
+
+    This is the average of the original measurement tBodyGyro.std().Z from the source data for each activity/subject combination.
+    
 - time.body.gyro.jerk.mean.x 
+
+    This is the average of the original measurement tBodyGyroJerk.mean().X from the source data for each activity/subject combination.
+    
 - time.body.gyro.jerk.mean.y 
+
+    This is the average of the original measurement tBodyGyroJerk.mean().Y from the source data for each activity/subject combination.
+    
 - time.body.gyro.jerk.mean.z 
 - time.body.gyro.jerk.standard.deviation.x 
 - time.body.gyro.jerk.standard.deviation.y 
@@ -203,4 +233,9 @@ The following are the values extracted from the original data set as well as the
 - frequency.body.gyro.magnitude.mean 
 - frequency.body.gyro.magnitude.standard.deviation 
 - frequency.body.gyro.jerk.magnitude.mean 
+
+    This is the average of the original calculation fBodyGyroJerkMag.mean() from the source data for each activity/subject combination.
+    
 - frequency.body.gyro.jerk.magnitude.standard.deviation 
+
+    This is the average of the original measurement fBodyGyroJerkMag.std() for the source data for each activity/subject combination.
