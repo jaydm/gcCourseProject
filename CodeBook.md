@@ -329,12 +329,21 @@ The following are the values extracted from the original data set as well as the
     This is the average of the original fBodyBodyAccJerkMag.mean() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
 
 - frequency.body.acceleration.jerk.magnitude.standard.deviation
+
+    This is the average of the original fBodyBodyAccJerkMag.std() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
+
 - frequency.body.gyro.magnitude.mean 
+
+    This is the average of the original fBodyBodyGyroMag.mean() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
+
 - frequency.body.gyro.magnitude.standard.deviation 
+
+    This is the average of the original fBodyBodyGyroMag.std() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
+
 - frequency.body.gyro.jerk.magnitude.mean 
 
-    This is the average of the original calculation fBodyGyroJerkMag.mean() from the source data for each activity/subject combination.
+    This is the average of the original calculation fBodyGyroJerkMag.mean() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
     
 - frequency.body.gyro.jerk.magnitude.standard.deviation 
 
-    This is the average of the original measurement fBodyGyroJerkMag.std() for the source data for each activity/subject combination.
+    This is the average of the original measurement fBodyGyroJerkMag.std() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
