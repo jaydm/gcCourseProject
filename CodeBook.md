@@ -6,7 +6,7 @@ output: html_document
 ---
 # Original Data
 
-The original data was produced by Samsung and is described as follows. See below for the converted data descriptions.
+The original data was produced by Samsung and is described as follows. *See below for the converted data descriptions.*
 
 ## Feature Selection 
 
@@ -225,7 +225,13 @@ The following are the values extracted from the original data set as well as the
     This is the average of the original measurement tBodyAccJerkMag.mean() from the source data for each activity/subject combination.
 
 - time.body.acceleration.jerk.magnitude.standard.deviation 
+
+    This is the average of the original measurement tBodyAccJerkMag.std() from the source data for each activity/subject combination.
+
 - time.body.gyro.magnitude.mean 
+
+    This is the average of the original tBodyGyroMag.mean() from the original source data for each activity/subject combination.
+
 - time.body.gyro.magnitude.standard.deviation 
 - time.body.gyro.jerk.magnitude.mean 
 - time.body.gyro.jerk.magnitude.standard.deviation 
