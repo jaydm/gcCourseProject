@@ -313,8 +313,17 @@ The following are the values extracted from the original data set as well as the
     This is the average of the original fBodyGyro.std().Y from the original source data for each activity/subject combination.
 
 - frequency.body.gyro.standard.deviation.z 
+
+    This is the average of the original fBodyGyro.std().Z from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.magnitude.mean 
+
+    This is the average of the original fBodyAccMag.mean() from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.magnitude.standard.deviation 
+
+    This is the average of the original fBodyAccMag.std() from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.magnitude.mean 
 
     This is the average of the original fBodyBodyAccJerkMag.mean() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
