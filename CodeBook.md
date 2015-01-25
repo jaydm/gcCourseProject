@@ -1,12 +1,12 @@
 ---
 title: Code Book
 author: Jay D. McHugh
-date: 01/16/2015
+date: 01/24/2015
 output: html_document
 ---
 # Original Data
 
-The original data was produced by Samsung and is described as follows. *See below for the converted data descriptions.*
+The original data was produced by Samsung and is described as follows. **See below for the converted data descriptions.**
 
 ## Feature Selection 
 
@@ -73,7 +73,7 @@ After the processing, the data has been consolidated with the descriptive activi
 
 Once they have been extracted, they are then summarized by activity and subject with each of the measurements averaged over those ranges.
 
-As these are averages of the averages and standard deviations which are unitless - *all of these values are also unitless*.
+As these are averages of the averages and standard deviations which are unitless - **all of these values are also unitless**.
 
 Although tidy data frequently strives to remove any extraneous characters from the column names, dots have been put in to make the names more easily readable. Also, the labels have been fully expanded to make it more readable to viewers without a specific background in physics/engineering.
 
