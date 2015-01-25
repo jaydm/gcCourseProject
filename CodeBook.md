@@ -233,29 +233,92 @@ The following are the values extracted from the original data set as well as the
     This is the average of the original tBodyGyroMag.mean() from the original source data for each activity/subject combination.
 
 - time.body.gyro.magnitude.standard.deviation 
+
+    This is the average of the original tBodyGyroMag.std() from the original source data for each activity/subject combination.
+
 - time.body.gyro.jerk.magnitude.mean 
+
+    This is the average of the original tBodyGyroJerkMag.mean() from the original source data for each activity/subject combination.
+
 - time.body.gyro.jerk.magnitude.standard.deviation 
+
+    This is the average of the original tBodyGyroJerkMag.std() from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.mean.x 
+
+    This is the average of the original fBodyAcc.mean().X from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.mean.y 
+
+    This is the average of the original fBodyAcc.mean().Y from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.mean.z 
+
+    This is the average of the original fBodyAcc.mean().Z from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.standard.deviation.x 
+
+    This is the average of the original fBodyAcc.std().X from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.standard.deviation.y 
+
+    This is the average of the original fBodyAcc.std().Y from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.standard.deviation.z 
+
+    This is the average of the original fBodyAcc.std().Z from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.mean.x 
+
+    This is the average of the original fBodyAccJerk.mean().X from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.mean.y 
+
+    This is the average of the original fBodyAccJerk.mean().Y from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.mean.z 
+
+    This is the average of the original fBodyAccJerk.mean().Z from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.standard.deviation.x 
+
+    This is the average of the original fBodyAccJerk.std().X from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.standard.deviation.y 
+
+    This is the average of the original fBodyAccJerk.std().Y from the original source data for each activity/subject combination.
+
 - frequency.body.acceleration.jerk.standard.deviation.z 
+
+    This is the average of the original fBodyAccJerk.std().Z from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.mean.x 
+
+    This is the average of the original fBodyGyro.mean().X from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.mean.y 
+
+    This is the average of the original fBodyGyro.mean().Y from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.mean.z 
+
+    This is the average of the original fBodyGyro.mean().Z from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.standard.deviation.x 
+
+    This is the average of the original fBodyGyro.std().X from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.standard.deviation.y 
+
+    This is the average of the original fBodyGyro.std().Y from the original source data for each activity/subject combination.
+
 - frequency.body.gyro.standard.deviation.z 
 - frequency.body.acceleration.magnitude.mean 
 - frequency.body.acceleration.magnitude.standard.deviation 
 - frequency.body.acceleration.jerk.magnitude.mean 
+
+    This is the average of the original fBodyBodyAccJerkMag.mean() from the original source data for each activity/subject combination. The original data column had a type including the word 'Body' twice.
+
 - frequency.body.acceleration.jerk.magnitude.standard.deviation
 - frequency.body.gyro.magnitude.mean 
 - frequency.body.gyro.magnitude.standard.deviation 
